@@ -17,9 +17,20 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
-- task: AzureCLI@2
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'Azure subscription 1(23ed9eda-3ffb-43fd-9e76-5ef119654b15)'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'az group create --name vnetgroup --location eastus'
+- task: AzureResourceManagerTemplateDeployment@3
   inputs:
-    azureSubscription: 'Azure subscription 1(23ed9eda-3ffb-43fd-9e76-5ef119654b15)'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az group create --name vnetgroup --location eastus'
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Azure subscription 1(23ed9eda-3ffb-43fd-9e76-5ef119654b15)'
+    subscriptionId: '23ed9eda-3ffb-43fd-9e76-5ef119654b15'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'vnetgroup'
+    location: 'East US'
+    templateLocation: 'Linked artifact'
+    csmFile: 'vnet.json'
+    deploymentMode: 'Incremental'
