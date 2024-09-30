@@ -22,4 +22,4 @@ steps:
     azureSubscription: 'Azure subscription 1(23ed9eda-3ffb-43fd-9e76-5ef119654b15)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az group create --name vnetgroup --location Central India'
+    inlineScript: 'az group create --name vnetgroup --location eastus'
